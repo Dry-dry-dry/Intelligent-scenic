@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.UserMapper">
+
+
+    <insert id="insert" parameterType="com.entity.UserEntity" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into "user"
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">username,</if>
+            <if test="pwd != null">pwd,</if>
+            <if test="roleid != null">roleid,</if>
+            <if test="cardid != null">cardid,</if>
+            <if test="email != null">email,</if>
+            <if test="area != null">area,</if>
+            <if test="tourist != null">tourist,</if>
+            <if test="company != null">company,</if>
+            <if test="guide != null">guide,</if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null">#{username},</if>
+            <if test="pwd != null">#{pwd},</if>
+            <if test="roleid != null">#{roleid},</if>
+            <if test="cardid != null">#{cardid},</if>
+            <if test="email != null">#{email},</if>
+            <if test="area != null">#{area},</if>
+            <if test="tourist != null">#{tourist},</if>
+            <if test="company != null">#{email},</if>
+            <if test="guide != null">#{guide},</if>
+        </trim>
+    </insert>
+
+    <delete id="delete">
+        delete from "user" where id =#{id}
+    </delete>
+
+    <select id="getUserById" parameterType="java.lang.Integer" resultType="com.entity.UserEntity    ">
+        select * from "user" where id = #{id}
+    </select>
+
+
+
+    <update id="update" parameterType="com.entity.UserEntity">
+        update "user"
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userName != null">username = #{username},</if>
+            <if test="pwd != null">pwd = #{pwd},</if>
+            <if test="roleid != null">roleid = #{roleid},</if>
+            <if test="cardid != null">cardid = #{cardid},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="area != null">area = #{area},</if>
+            <if test="tourist != null">tourist = #{tourist},</if>
+            <if test="company != null">company = #{company},</if>
+            <if test="guide != null">guide = #{guide},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <select id="list" resultType="com.entity.UserEntity">
+        select *
+        from "user"
+
+        <!--<where>
+            <if test = "userGroupId !=null">
+                u.user_group_id = #{userGroupId}
+            </if>
+            <if test="userName !=null and userName!=''">
+                and (u.user_name like '%${userName}%' or u.account  like '%${userName}%')
+            </if>
+        </where>-->
+        order by id desc
+    </select>
+
+
+</mapper>

@@ -1,9 +1,9 @@
-package entity;
+package com.entity;
 
 import lombok.Data;
 
 @Data
-public class User {
+public class UserEntity {
  private int id;
  private String username;
  private String pwd;

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeHandlers>
+        <!--<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="CertificateType"/>-->
+        <!--<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="Gender"/>-->
+        <!--<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="PersonStatus"/>-->
+        <!--<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="PersonKind"/>-->
+        <!--<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="PersonIdentity"/>-->
+        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="PhoneOperator"/>
+        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="DeviceType"/>
+        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="VisitorKind"/>
+    </typeHandlers>
+
+    <plugins>
+        <plugin interceptor="io.github.yidasanqian.AddDateInterceptor">
+            <property name="createDateColumnName" value="create_time"/>
+            <property name="updateDateColumnName" value="modified_time"/>
+        </plugin>
+    </plugins>
+</configuration>

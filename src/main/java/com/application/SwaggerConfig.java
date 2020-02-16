@@ -1,4 +1,4 @@
-package config;
+package com.application;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,14 +23,15 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.cetc52"))
+                .apis(RequestHandlerSelectors.basePackage("com.controller"))
                 .paths(PathSelectors.any())
                 .build();
+
     }
 
     private ApiInfo apiInfo(){
-        return new ApiInfoBuilder().title("kjyq-系统管理")
-                .description("系统管理相关接口说明")
+        return new ApiInfoBuilder().title("智慧景区")
+                .description("智慧景区管理")
                 .version("1.0")
                 .build();
     }
