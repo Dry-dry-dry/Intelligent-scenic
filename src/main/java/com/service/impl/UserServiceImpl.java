@@ -18,13 +18,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
     @Override
-    public void insert(UserEntity req) {
-        try {
-            userMapper.insert(req);
-        }
-        catch (Exception e){
+    public int insert(UserEntity req) {
 
-        }
+
+            int insert = userMapper.insert(req);
+            return insert;
 
     }
 
@@ -53,5 +51,10 @@ public class UserServiceImpl implements UserService {
        List<UserEntity> list = userMapper.list();
 
         return list;
+    }
+
+    @Override
+    public int userCount(String area, String tourist, String company, String guide) {
+        return userMapper.userCount(area,tourist,company,guide);
     }
 }

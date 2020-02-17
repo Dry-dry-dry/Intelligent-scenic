@@ -3,8 +3,7 @@
 <mapper namespace="com.mapper.UserMapper">
 
 
-    <insert id="insert" parameterType="com.entity.UserEntity" useGeneratedKeys="true"
-            keyProperty="id">
+    <insert id="insert" parameterType="com.entity.UserEntity" >
         insert into "user"
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="username != null">username,</if>
@@ -69,6 +68,26 @@
                 and (u.user_name like '%${userName}%' or u.account  like '%${userName}%')
             </if>
         </where>-->
+        order by id desc
+    </select>
+    <select id="userCount" resultType="java.lang.Integer" >
+        select count
+        from "user"
+        <where>
+            <if test = "area !=null">
+                area = #{area}
+            </if>
+            <if test = "tourist !=null">
+                tourist = #{tourist}
+            </if>
+            <if test = "company !=null">
+                company = #{company}
+            </if>
+            <if test = "guide !=null">
+                guide = #{guide}
+            </if>
+
+        </where>
         order by id desc
     </select>
 

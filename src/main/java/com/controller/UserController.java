@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.entity.UserCountReq;
 import com.entity.UserEntity;
 import com.service.UserService;
 import com.util.Response;
@@ -23,8 +24,8 @@ public class UserController {
         if (!(StringUtils.hasText(req.getUsername()) && StringUtils.hasText(req.getPwd()))) {
             return Response.create(ResponseCode.ERROR, "账户名和密码均不能为空", null);
         }
-        userService.insert(req);
-        return Response.ok();
+        int insert = userService.insert(req);
+        return Response.ok(insert);
     }
     @PostMapping("/update")
     public Response update(@RequestBody UserEntity req){
@@ -36,18 +37,20 @@ public class UserController {
         userService.delete(req);
         return Response.ok();
     }
-
-    @GetMapping("/list")
-    //查询用户信息包括用户组、角色信息
+    @PostMapping("/list")
     public Response list(@RequestBody UserEntity req){
         List<UserEntity> list = userService.list(req);
         return Response.ok(list);
     }
     @PostMapping("/getById")
-    //查询用户信息包括用户组、角色信息
     public Response getById(@RequestBody UserEntity req){
         UserEntity userInfo = userService.getById(req.getId());
         return Response.ok(userInfo);
+    }
+    @PostMapping("countByReq")  //根据不同的条件去查询团队人数
+    public Response countByReq(@RequestBody UserCountReq req){
+        int i = userService.userCount(req.getArea(), req.getTourist(), req.getCompany(), req.getGuide());
+        return Response.ok(i);
     }
 
 }

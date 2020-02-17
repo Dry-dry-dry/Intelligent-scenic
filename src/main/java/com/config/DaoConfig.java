@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 
 @Configuration
-@MapperScan(basePackages = "mapper")
+@MapperScan(basePackages = "com/mapper")
 public class DaoConfig {
     @Value("${mybatis.config-location:classpath:mybatis-config-dao.xml}")
     private String configLocation;

@@ -1,6 +1,7 @@
 package com.service;
 
 import com.entity.UserEntity;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * createTime 2019-7-29
  */
 public interface UserService {
-    void insert(UserEntity req);
+    int insert(UserEntity req);
 
     void update(UserEntity req);
 
@@ -18,5 +19,10 @@ public interface UserService {
     UserEntity getById(Integer id);
 
     List<UserEntity> list(UserEntity req);
+
+    int userCount(@Param("area") String area,
+                  @Param("tourist") String tourist,
+                  @Param("company") String company,
+                  @Param("guide") String guide);
 
 }

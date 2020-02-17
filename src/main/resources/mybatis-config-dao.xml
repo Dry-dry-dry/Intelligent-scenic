@@ -4,22 +4,13 @@
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
+    <typeAliases>
+        <package name="com.entity"/>
+        <!--<package name="com.cetc52.dx2.personnelmanage.domain.dto"/>-->
 
-    <typeHandlers>
-        <!--<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="CertificateType"/>-->
-        <!--<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="Gender"/>-->
-        <!--<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="PersonStatus"/>-->
-        <!--<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="PersonKind"/>-->
-        <!--<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="PersonIdentity"/>-->
-        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="PhoneOperator"/>
-        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="DeviceType"/>
-        <typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="VisitorKind"/>
-    </typeHandlers>
+    </typeAliases>
 
-    <plugins>
-        <plugin interceptor="io.github.yidasanqian.AddDateInterceptor">
-            <property name="createDateColumnName" value="create_time"/>
-            <property name="updateDateColumnName" value="modified_time"/>
-        </plugin>
-    </plugins>
+
+
+
 </configuration>

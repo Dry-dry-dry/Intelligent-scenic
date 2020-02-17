@@ -1,6 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/intelligent_scenic?useUnicode=true;characterEncoding=UTF-8
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password:
+
+
