@@ -3,10 +3,11 @@ package com.mapper;
 import com.entity.HotelEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Mapper
+@Repository
 public interface HotelMapper {
     int hotelInsert(HotelEntity entity);
 

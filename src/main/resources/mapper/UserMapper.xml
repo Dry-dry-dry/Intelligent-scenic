@@ -4,7 +4,7 @@
 
 
     <insert id="insert" parameterType="com.entity.UserEntity" >
-        insert into "user"
+        insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="username != null">username,</if>
             <if test="pwd != null">pwd,</if>
@@ -31,11 +31,11 @@
     </insert>
 
     <delete id="delete">
-        delete from "user" where id =#{id}
+        delete from user where id =#{id}
     </delete>
 
-    <select id="getUserById" parameterType="java.lang.Integer" resultType="com.entity.UserEntity    ">
-        select * from "user" where id = #{id}
+    <select id="getUserById" parameterType="java.lang.Integer" resultType="com.entity.UserEntity">
+        select * from user where id = #{id}
     </select>
 
 
@@ -58,7 +58,7 @@
 
     <select id="list" resultType="com.entity.UserEntity">
         select *
-        from "user"
+        from user
 
         <!--<where>
             <if test = "userGroupId !=null">
@@ -71,8 +71,8 @@
         order by id desc
     </select>
     <select id="userCount" resultType="java.lang.Integer" >
-        select count
-        from "user"
+        select count(*)
+        from user
         <where>
             <if test = "area !=null">
                 area = #{area}

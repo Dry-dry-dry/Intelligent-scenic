@@ -4,7 +4,7 @@
 
 
     <insert id="hotelOrderInsert" parameterType="com.entity.HotelOrderEntity" >
-        insert into "hotelorder"
+        insert into hotelorder
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="hotelid != null">hotelid,</if>
             <if test="roomid != null">roomid,</if>
@@ -35,16 +35,16 @@
     </insert>
 
     <delete id="hotelOrderDelete">
-        delete from "hotelorder" where id =#{id}
+        delete from hotelorder where id =#{id}
     </delete>
 
-    <select id="getHotelOrderById" parameterType="java.lang.Integer" resultType="com.entity.HotelOrderEntity    ">
-        select * from "hotelorder" where id = #{id}
+    <select id="getHotelOrderById" parameterType="java.lang.Integer" resultType="com.entity.HotelOrderEntity">
+        select * from hotelorder where id = #{id}
     </select>
 
 
     <update id="hotelOrderUpdate" parameterType="com.entity.HotelOrderEntity">
-        update "hotelorder"
+        update hotelorder
         <trim prefix="set" suffixOverrides=",">
             <if test="hotelid != null">hotelid = #{hotelid},</if>
             <if test="roomid != null">roomid = #{roomid},</if>
@@ -63,7 +63,7 @@
 
     <select id="hotelOrderList" resultType="com.entity.HotelOrderEntity">
         select *
-        from "hotelorder"
+        from hotelorder
 
         <!--<where>
             <if test = "userGroupId !=null">
