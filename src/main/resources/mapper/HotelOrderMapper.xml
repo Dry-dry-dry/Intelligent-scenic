@@ -15,7 +15,7 @@
             <if test="checkouttime != null">checkouttime,</if>
             <if test="isend != null">isend,</if>
             <if test="ordercancel != null">ordercancel,</if>
-            <if test="username != null">username,</if>
+            <if test="userid != null">userid,</if>
 
         </trim>
 
@@ -29,7 +29,7 @@
             <if test="checkouttime != null">#{checkouttime},</if>
             <if test="isend != null">#{isend},</if>
             <if test="ordercancel != null">#{ordercancel},</if>
-            <if test="username != null">#{username},</if>
+            <if test="userid != null">#{userid},</if>
 
         </trim>
     </insert>
@@ -55,7 +55,7 @@
             <if test="checkouttime != null">checkouttime = #{checkouttime},</if>
             <if test="isend != null">isend = #{isend},</if>
             <if test="ordercancel != null">ordercancel = #{ordercancel},</if>
-            <if test="username != null">username = #{username},</if>
+            <if test="userid != null">userid = #{userid},</if>
 
         </trim>
         where id = #{id}

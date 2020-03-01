@@ -4,7 +4,7 @@ package com.util;
  * @author xuhongnan
  * 创建时间 2019-7-16
  */
-public class ResponseException extends RuntimeException {
+public class    ResponseException extends RuntimeException {
     private Object data;
 
     private ResponseCode code;

@@ -15,6 +15,6 @@ public class HotelOrderEntity {
     private Date checkouttime;
     private int isend;
     private int ordercancel;
-    private String username;
+    private Integer userid;
 
 }
