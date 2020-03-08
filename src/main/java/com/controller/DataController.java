@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.entity.ManagementEntity;
 import com.entity.TicketEntity;
 import com.service.TicketService;
 import com.util.Response;
@@ -8,7 +9,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Api(description = "人员流量统计接口")
 @RestController
@@ -34,18 +37,39 @@ public class DataController {
     @ApiOperation("不同时间景区流量统计")
     @PostMapping("/findUserByTime")
     public Response findUserByTime(@RequestParam String strStartTime,@RequestParam String strEndTime){
+
         List numList = ticketService.findUserByTime(strStartTime,strEndTime);
         return Response.ok(numList);
     }
 
-    @ApiOperation("截止目前，景区经营数据统计")
-    @PostMapping("/businessData")
-    /**
-     * 数据统计包括：景区售票数，总营业额，购票已进入景区人数，对用的营业额，购票未进入景区人数，对应营业额
-     * */
-    public Response businessData(){
-        List list = ticketService.businessData();
-        return Response.ok(list);
+
+
+    @ApiOperation("景区每天经营数据统计")
+    @PostMapping("/dayData")
+    public Response dayData(@RequestParam String strStartTime,@RequestParam String strEndTime){
+        Date startTime = ticketService.timesTempToDate(strStartTime);
+        Date endTime = ticketService.timesTempToDate(strEndTime);
+        Map<String,Integer> map = ticketService.dayData(startTime, endTime);
+        return Response.ok(map);
     }
 
+    @ApiOperation("景区月度经营数据统计")
+    @PostMapping("/monthData")
+    /**
+     * 数据统计包括：景区售票数，总营业额，购票已进入景区人数，对用的营业额，购票未进入景区人数，对应营业额
+     * 参数输入如下
+     * strYear: 2020
+     * strMonth: 3
+     * */
+    public Response monthData(@RequestParam String strYear,@RequestParam String strMonth){
+        ManagementEntity managementEntity = ticketService.monthData(strYear , strMonth);
+        return Response.ok(managementEntity);
+    }
+
+    @ApiOperation("景区年度经营数据统计")
+    @PostMapping("/yearData")
+    public Response yearData(@RequestParam String strYear){
+        ManagementEntity managementEntity = ticketService.yearData(strYear);
+        return Response.ok(managementEntity);
+    }
 }

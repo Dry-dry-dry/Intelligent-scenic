@@ -1,9 +1,11 @@
 package com.service;
 
+import com.entity.ManagementEntity;
 import com.entity.TicketEntity;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface TicketService {
     void insert(TicketEntity entity);
@@ -27,6 +29,12 @@ public interface TicketService {
     List<TicketEntity> list();
 
     List businessData();
+
+    Map<String, Integer> dayData(Date startTime, Date endTime);
+
+    ManagementEntity yearData(String strYear);
+
+    ManagementEntity monthData(String strYear, String strMonth);
 
     Date timesTempToDate(String strTimesTemp);
 

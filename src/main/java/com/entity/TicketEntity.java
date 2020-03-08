@@ -25,7 +25,7 @@ public class TicketEntity {
      * */
     private int isrefund; //是否退票
     private int isindividualt; //是否散客票
-    private int isteam; //是否参加团队，
+    private int isteam; //是否参加团队，是：人数，不是：0
     private int isconcession; //是否优惠票
     private int isafterbuy; //是否补票
     private int isused; //是否已使用
