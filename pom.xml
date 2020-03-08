@@ -52,7 +52,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
+        </dependency> 
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
