@@ -49,7 +49,8 @@ public class TicketController {
     @ApiOperation("查看自己的门票")
     @PostMapping("/getTicketByUser")
     //查询用户信息包括用户组、角色信息
-    public Response getTicketByUser(@RequestParam String userName){
+    public Response getTicketByUser(@RequestBody TicketEntity req){
+        String userName = req.getTicketbooker();
         List<TicketEntity> list = ticketService.getTicketByUser(userName);
         return Response.ok(list);
     }
@@ -64,22 +65,24 @@ public class TicketController {
 
     @ApiOperation("景区入口：门票使用时间")
     @PostMapping("/ticketInTime")
-    public Response setTicketInTime(@RequestParam String ID, @RequestParam String strInTime){
+    public Response setTicketInTime(@RequestBody TicketEntity req){
+        String strInTime = req.getStrintime();
         long lt = new Long(strInTime);
         Date outDate = new Date(lt);
         TicketEntity ticketEntity = new TicketEntity();
-        ticketEntity.setId(Integer.parseInt(ID));
+//        ticketEntity.setId(req.getId());
         ticketEntity.setOuttime(outDate);
         ticketService.update(ticketEntity);
         return Response.ok();
     }
     @ApiOperation("景区出口：门票使用时间")
     @PostMapping("/ticketOutTime")
-    public Response setTicketOutTime(@RequestParam String ID, @RequestParam String strOutTime){
+    public Response setTicketOutTime(@RequestBody TicketEntity req){
+        String strOutTime = req.getStrouttime();
         long lt = new Long(strOutTime);
         Date outDate = new Date(lt);
         TicketEntity ticketEntity = new TicketEntity();
-        ticketEntity.setId(Integer.parseInt(ID));
+//        ticketEntity.setId(Integer.parseInt(ID));
         ticketEntity.setOuttime(outDate);
         ticketService.update(ticketEntity);
         return Response.ok();
@@ -109,7 +112,8 @@ public class TicketController {
     @ApiOperation("删除门票设置信息")
     @PostMapping("/deleteSetTickets")
     //查询用户信息包括用户组、角色信息
-    public Response deleteTicketSetEntitys(@RequestParam String TicketID){
+    public Response deleteTicketSetEntitys(@RequestBody TicketEntity req){
+        String TicketID =String.valueOf( req.getId());
         ticketSetService.delete(TicketID);
         return Response.ok();
     }

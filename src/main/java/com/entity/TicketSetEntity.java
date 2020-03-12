@@ -15,6 +15,7 @@ public class TicketSetEntity {
 
 
     private int ticketID;
+
     private String ticketname; //门票名
     private int ticketprice;   //门票价格
     private int concessionprice; //门票优惠价

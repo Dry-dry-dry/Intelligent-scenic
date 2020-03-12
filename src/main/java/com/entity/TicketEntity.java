@@ -11,14 +11,18 @@ public class TicketEntity {
 
 
     private int id;
-    private String ticketname; //门票名
+    private String ticketsname; //门票名
     private int ticketprice;   //门票价格
     private String ticketbooker; //门票预订人
     private String ticketbelong; //门票拥有人
     private Date applytime;  //预订时间
+    private String strapplytime;
     private Date tickettime; //门票时间
+    private String strtickettime;
     private Date intime;  //进入景区时间
+    private String strintime;
     private Date outtime;  //离开景区时间
+    private String strouttime;
 
     /**
      * 说明：下面参数判断是否的值，一律如下：

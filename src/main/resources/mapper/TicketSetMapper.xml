@@ -10,6 +10,7 @@
             <if test="ticketname != null">ticketname,</if>
             <if test="ticketprice != null">ticketprice,</if>
             <if test="concessionprice != null">concessionprice,</if>
+            <if test="ticketType != null">ticketType,</if>
             <if test="issale != null">issale,</if>
         </trim>
 
@@ -17,7 +18,8 @@
             <if test="ticketname != null">#{ticketname},</if>
             <if test="ticketprice != null">#{ticketprice},</if>
             <if test="concessionprice != null">#{concessionprice},</if>
-            <if test="issale != null">#{issale},</if>
+            <if test="ticketType != null">#{ticketType},</if>
+            <if test="issale != null">issale,</if>
         </trim>
     </insert>
 
@@ -31,6 +33,7 @@
             <if test="ticketname != null">ticketname = #{ticketname},</if>
             <if test="ticketprice != null">ticketprice = #{ticketprice},</if>
             <if test="concessionprice != null">concessionprice = #{concessionprice},</if>
+            <if test="ticketType != null">ticketType = #{ticketType},</if>
             <if test="issale != null">issale = #{issale},</if>
         </trim>
         where ticketID = #{ticketID}
