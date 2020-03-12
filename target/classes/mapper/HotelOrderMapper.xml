@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.HotelOrderMapper">
+
+
+    <insert id="hotelOrderInsert" parameterType="com.entity.HotelOrderEntity" >
+        insert into hotelorder
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="hotelid != null">hotelid,</if>
+            <if test="roomid != null">roomid,</if>
+            <if test="applytime != null">applytime,</if>
+            <if test="starttime != null">starttime,</if>
+            <if test="endtime != null">endtime,</if>
+            <if test="ischeckout != null">ischeckout,</if>
+            <if test="checkouttime != null">checkouttime,</if>
+            <if test="isend != null">isend,</if>
+            <if test="ordercancel != null">ordercancel,</if>
+            <if test="userid != null">userid,</if>
+
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="hotelid != null">#{hotelid},</if>
+            <if test="roomid != null">#{roomid},</if>
+            <if test="applytime != null">#{applytime},</if>
+            <if test="starttime != null">#{starttime},</if>
+            <if test="endtime != null">#{endtime},</if>
+            <if test="ischeckout != null">#{ischeckout},</if>
+            <if test="checkouttime != null">#{checkouttime},</if>
+            <if test="isend != null">#{isend},</if>
+            <if test="ordercancel != null">#{ordercancel},</if>
+            <if test="userid != null">#{userid},</if>
+
+        </trim>
+    </insert>
+
+    <delete id="hotelOrderDelete">
+        delete from hotelorder where id =#{id}
+    </delete>
+
+    <select id="getHotelOrderById" parameterType="java.lang.Integer" resultType="com.entity.HotelOrderEntity">
+        select * from hotelorder where id = #{id}
+    </select>
+
+
+    <update id="hotelOrderUpdate" parameterType="com.entity.HotelOrderEntity">
+        update hotelorder
+        <trim prefix="set" suffixOverrides=",">
+            <if test="hotelid != null">hotelid = #{hotelid},</if>
+            <if test="roomid != null">roomid = #{roomid},</if>
+            <if test="applytime != null">applytime = #{applytime},</if>
+            <if test="starttime != null">starttime = #{starttime},</if>
+            <if test="endtime != null">endtime = #{endtime},</if>
+            <if test="ischeckout != null">ischeckout = #{ischeckout},</if>
+            <if test="checkouttime != null">checkouttime = #{checkouttime},</if>
+            <if test="isend != null">isend = #{isend},</if>
+            <if test="ordercancel != null">ordercancel = #{ordercancel},</if>
+            <if test="userid != null">userid = #{userid},</if>
+
+        </trim>
+        where id = #{id}
+    </update>
+
+    <select id="hotelOrderList" resultType="com.entity.HotelOrderEntity">
+        select *
+        from hotelorder
+
+        <!--<where>
+            <if test = "userGroupId !=null">
+                u.user_group_id = #{userGroupId}
+            </if>
+            <if test="userName !=null and userName!=''">
+                and (u.user_name like '%${userName}%' or u.account  like '%${userName}%')
+            </if>
+        </where>-->
+        order by id desc
+    </select>
+
+
+</mapper>
