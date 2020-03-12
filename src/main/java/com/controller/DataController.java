@@ -6,6 +6,7 @@ import com.service.TicketService;
 import com.util.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.experimental.Accessors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @Api(description = "人员流量统计接口")
 @RestController
 @RequestMapping("/api/data")

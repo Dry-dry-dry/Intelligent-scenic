@@ -17,4 +17,7 @@ public class HotelOrderEntity {
     private int ordercancel;
     private Integer userid;
 
+    private String username;
+    private String ordertext;
+
 }

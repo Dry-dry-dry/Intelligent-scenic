@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @Api(description = "宾馆详细相关接口")
 @RestController
 @RequestMapping("/api/hotelorder")

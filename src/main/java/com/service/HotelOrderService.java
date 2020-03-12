@@ -14,4 +14,6 @@ public interface HotelOrderService {
     HotelOrderEntity getHotelOrderById(Integer id);
 
     List<HotelOrderEntity> hotelOrderList( );
+
+    List<HotelOrderEntity> getHotelOrderByUserName(String username);
 }

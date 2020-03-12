@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin
 @Api(description = "门票相关接口")
 @RestController
 @RequestMapping("/api/ticket")
@@ -63,20 +64,22 @@ public class TicketController {
 
     @ApiOperation("景区入口：门票使用时间")
     @PostMapping("/ticketInTime")
-    public Response setTicketInTime(@RequestBody String strInTime){
+    public Response setTicketInTime(@RequestParam String ID, @RequestParam String strInTime){
         long lt = new Long(strInTime);
         Date outDate = new Date(lt);
         TicketEntity ticketEntity = new TicketEntity();
+        ticketEntity.setId(Integer.parseInt(ID));
         ticketEntity.setOuttime(outDate);
         ticketService.update(ticketEntity);
         return Response.ok();
     }
     @ApiOperation("景区出口：门票使用时间")
     @PostMapping("/ticketOutTime")
-    public Response setTicketOutTime(@RequestBody String strOutTime){
+    public Response setTicketOutTime(@RequestParam String ID, @RequestParam String strOutTime){
         long lt = new Long(strOutTime);
         Date outDate = new Date(lt);
         TicketEntity ticketEntity = new TicketEntity();
+        ticketEntity.setId(Integer.parseInt(ID));
         ticketEntity.setOuttime(outDate);
         ticketService.update(ticketEntity);
         return Response.ok();
