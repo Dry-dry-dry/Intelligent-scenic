@@ -16,7 +16,8 @@
             <if test="isend != null">isend,</if>
             <if test="ordercancel != null">ordercancel,</if>
             <if test="userid != null">userid,</if>
-
+            <if test="username != null">username,</if>
+            <if test="ordertext != null">ordertext,</if>
         </trim>
 
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -30,7 +31,8 @@
             <if test="isend != null">#{isend},</if>
             <if test="ordercancel != null">#{ordercancel},</if>
             <if test="userid != null">#{userid},</if>
-
+            <if test="username != null">#{username},</if>
+            <if test="ordertext != null">#{ordertext},</if>
         </trim>
     </insert>
 
@@ -41,7 +43,9 @@
     <select id="getHotelOrderById" parameterType="java.lang.Integer" resultType="com.entity.HotelOrderEntity">
         select * from hotelorder where id = #{id}
     </select>
-
+    <select id="getHotelOrderByUserName" parameterType="java.lang.Integer" resultType="com.entity.HotelOrderEntity">
+        select * from hotelorder where username = #{username}
+    </select>
 
     <update id="hotelOrderUpdate" parameterType="com.entity.HotelOrderEntity">
         update hotelorder

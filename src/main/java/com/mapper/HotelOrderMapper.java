@@ -17,4 +17,6 @@ public interface HotelOrderMapper {
     int hotelOrderUpdate(HotelOrderEntity entity);
 
     List<HotelOrderEntity> hotelOrderList();
+
+    List<HotelOrderEntity> getHotelOrderByUserName(String username);
 }

@@ -32,6 +32,10 @@ public class HotelOrderServiceImpl implements HotelOrderService {
     }
 
     @Override
+    public List<HotelOrderEntity> getHotelOrderByUserName(String username){
+        return hotelOrderMapper.getHotelOrderByUserName(username);
+    }
+    @Override
     public List<HotelOrderEntity> hotelOrderList() {
         return hotelOrderMapper.hotelOrderList();
     }

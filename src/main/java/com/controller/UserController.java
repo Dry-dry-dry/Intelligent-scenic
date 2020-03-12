@@ -12,6 +12,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+@CrossOrigin
 @Api(description = "用户相关接口")
 @RestController
 @RequestMapping("/api/user")

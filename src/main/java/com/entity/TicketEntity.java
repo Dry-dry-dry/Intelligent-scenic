@@ -11,6 +11,7 @@ public class TicketEntity {
 
 
     private int id;
+    private String ticketname; //门票名
     private int ticketprice;   //门票价格
     private String ticketbooker; //门票预订人
     private String ticketbelong; //门票拥有人
