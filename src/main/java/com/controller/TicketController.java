@@ -109,10 +109,10 @@ public class TicketController {
         return Response.ok();
     }
 
-    @ApiOperation("删除门票设置信息")
+    @ApiOperation("删除门票设置信息 ")
     @PostMapping("/deleteSetTickets")
     //查询用户信息包括用户组、角色信息
-    public Response deleteTicketSetEntitys(@RequestBody TicketEntity req){
+    public Response deleteTicketSetEntitys(@RequestBody TicketEntity req ){
         String TicketID =String.valueOf( req.getId());
         ticketSetService.delete(TicketID);
         return Response.ok();
