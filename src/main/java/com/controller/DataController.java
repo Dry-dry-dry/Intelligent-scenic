@@ -24,21 +24,21 @@ public class DataController {
 
     @ApiOperation("出口流量统计")
     @PostMapping("/findUserByOut")
-    public Response findUserByOutTime(@RequestParam String strInTime,@RequestParam String strOutTime){
+    public Response findUserByOutTime(@RequestBody String strInTime,@RequestBody String strOutTime){
         int outNum = ticketService.getTicketByOutTime(strInTime,strOutTime);
         return Response.ok(outNum);
     }
 
     @ApiOperation("入口流量统计")
     @PostMapping("/findUserByIn")
-    public Response findUserByInTime(@RequestParam String strInTime,@RequestParam String strOutTime){
+    public Response findUserByInTime(@RequestBody String strInTime,@RequestBody String strOutTime){
         int inNum = ticketService.getTicketByInTime(strInTime,strOutTime);
         return Response.ok(inNum);
     }
 
     @ApiOperation("不同时间景区流量统计")
     @PostMapping("/findUserByTime")
-    public Response findUserByTime(@RequestParam String strStartTime,@RequestParam String strEndTime){
+    public Response findUserByTime(@RequestBody String strStartTime,@RequestBody String strEndTime){
 
         List numList = ticketService.findUserByTime(strStartTime,strEndTime);
         return Response.ok(numList);
@@ -48,7 +48,7 @@ public class DataController {
 
     @ApiOperation("景区每天经营数据统计")
     @PostMapping("/dayData")
-    public Response dayData(@RequestParam String strStartTime,@RequestParam String strEndTime){
+    public Response dayData(@RequestBody String strStartTime,@RequestBody String strEndTime){
         Date startTime = ticketService.timesTempToDate(strStartTime);
         Date endTime = ticketService.timesTempToDate(strEndTime);
         Map<String,Integer> map = ticketService.dayData(startTime, endTime);
@@ -63,14 +63,14 @@ public class DataController {
      * strYear: 2020
      * strMonth: 3
      * */
-    public Response monthData(@RequestParam String strYear,@RequestParam String strMonth){
+    public Response monthData(@RequestBody String strYear,@RequestBody String strMonth){
         ManagementEntity managementEntity = ticketService.monthData(strYear , strMonth);
         return Response.ok(managementEntity);
     }
 
     @ApiOperation("景区年度经营数据统计")
     @PostMapping("/yearData")
-    public Response yearData(@RequestParam String strYear){
+    public Response yearData(@RequestBody String strYear){
         ManagementEntity managementEntity = ticketService.yearData(strYear);
         return Response.ok(managementEntity);
     }

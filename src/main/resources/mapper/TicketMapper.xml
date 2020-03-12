@@ -20,6 +20,7 @@
             <if test="isused != null">isused,</if>
             <if test="intime != null">intime,</if>
             <if test="outtime != null">outtime,</if>
+            <if test="ticketsname != null">ticketsname,</if>
         </trim>
 
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -36,6 +37,7 @@
             <if test="isused != null">#{isused},</if>
             <if test="intime != null">#{intime},</if>
             <if test="outtime != null">#{outtime},</if>
+            <if test="ticketsname != null">#{ticketsname},</if>
         </trim>
     </insert>
 
@@ -47,7 +49,7 @@
         update ticket
         <trim prefix="set" suffixOverrides=",">
             <if test="ticketprice != null">ticketprice = #{ticketprice},</if>
-            <if test="ticketname != null">ticketname = #{ticketname},</if>
+            <if test="ticketsname != null">ticketsname = #{ticketsname},</if>
             <if test="ticketbooker != null">ticketbooker = #{ticketbooker},</if>
             <if test="applytime != null">applytime = #{applytime},</if>
             <if test="tickettime != null">tickettime = #{tickettime},</if>
