@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.HotelMapper">
+
+
+    <insert id="hotelInsert" parameterType="com.entity.HotelEntity" >
+        insert into hotel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="hotelname != null">hotelname,</if>
+            <if test="position != null">position,</if>
+            <if test="phone != null">phone,</if>
+            <if test="roomnum != null">roomnum,</if>
+            <if test="roomprice != null">roomprice,</if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="hotelname != null">#{hotelname},</if>
+            <if test="position != null">#{position},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="roomnum != null">#{roomnum},</if>
+            <if test="roomprice != null">#{roomprice},</if>
+
+        </trim>
+    </insert>
+
+    <delete id="hotelDelete">
+        delete from hotel where id =#{id}
+    </delete>
+
+    <select id="getHotelById" parameterType="java.lang.Integer" resultType="com.entity.HotelEntity">
+        select * from hotel where id = #{id}
+    </select>
+
+
+    <update id="hotelUpdate" parameterType="com.entity.HotelEntity">
+        update hotel
+        <trim prefix="set" suffixOverrides=",">
+            <if test="hotelname != null">hotelname = #{hotelname},</if>
+            <if test="position != null">position = #{position},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="roomnum != null">roomnum = #{roomnum},</if>
+            <if test="roomprice != null">roomprice = #{roomprice},</if>
+
+        </trim>
+        where id = #{id}
+    </update>
+
+    <select id="hotelList" resultType="com.entity.HotelEntity">
+        select *
+        from hotel
+
+        <!--<where>
+            <if test = "userGroupId !=null">
+                u.user_group_id = #{userGroupId}
+            </if>
+            <if test="userName !=null and userName!=''">
+                and (u.user_name like '%${userName}%' or u.account  like '%${userName}%')
+            </if>
+        </where>-->
+        order by id desc
+    </select>
+
+
+</mapper>

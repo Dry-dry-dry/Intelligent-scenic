@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.TicketMapper">
+
+
+    <insert id="insert" parameterType="com.entity.TicketEntity" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into ticket
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ticketprice != null">ticketprice,</if>
+            <if test="ticketbooker != null">ticketbooker,</if>
+            <if test="ticketbelong != null">ticketbelong,</if>
+            <if test="applytime != null">applytime,</if>
+            <if test="tickettime != null">tickettime,</if>
+            <if test="isrefund != null">isrefund,</if>
+            <if test="isindividualt != null">isindividualt,</if>
+            <if test="isteam != null">isteam,</if>
+            <if test="isconcession != null">isconcession,</if>
+            <if test="isafterbuy != null">isafterbuy,</if>
+            <if test="isused != null">isused,</if>
+            <if test="intime != null">intime,</if>
+            <if test="outtime != null">outtime,</if>
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ticketprice != null">#{ticketprice},</if>
+            <if test="ticketbooker != null">#{ticketbooker},</if>
+            <if test="ticketbelong != null">#{ticketbelong},</if>
+            <if test="applytime != null">#{applytime},</if>
+            <if test="tickettime != null">#{tickettime},</if>
+            <if test="isrefund != null">#{isrefund},</if>
+            <if test="isindividualt != null">#{isindividualt},</if>
+            <if test="isteam != null">#{isteam},</if>
+            <if test="isconcession != null">#{isconcession},</if>
+            <if test="isafterbuy != null">#{isafterbuy},</if>
+            <if test="isused != null">#{isused},</if>
+            <if test="intime != null">#{intime},</if>
+            <if test="outtime != null">#{outtime},</if>
+        </trim>
+    </insert>
+
+    <delete id="delete">
+        delete from ticket where id =#{id}
+    </delete>
+
+    <update id="update" parameterType="com.entity.TicketEntity">
+        update ticket
+        <trim prefix="set" suffixOverrides=",">
+            <if test="ticketprice != null">ticketprice = #{ticketprice},</if>
+            <if test="ticketbooker != null">ticketbooker = #{ticketbooker},</if>
+            <if test="applytime != null">applytime = #{applytime},</if>
+            <if test="tickettime != null">tickettime = #{tickettime},</if>
+            <if test="isrefund != null">isrefund = #{isrefund},</if>
+            <if test="isindividualt != null">isindividualt = #{isindividualt},</if>
+            <if test="isteam != null">isteam = #{isteam},</if>
+            <if test="isconcession != null">isconcession = #{isconcession},</if>
+            <if test="isafterbuy != null">isafterbuy = #{isafterbuy},</if>
+            <if test="isused != null">isused = #{isused},</if>
+            <if test="intime != null">intime = #{intime},</if>
+            <if test="outtime != null">outtime = #{outtime},</if>
+        </trim>
+        where ticketbelong = #{ticketbelong}
+    </update>
+
+    <select id="getTicketById" parameterType="java.lang.Integer" resultType="com.entity.TicketEntity">
+        select * from ticket where id = #{id}
+    </select>
+
+    <select id="getTicketByBooker" parameterType="java.lang.String" resultType="com.entity.TicketEntity">
+        select * from ticket where ticketbooker = #{ticketbooker}
+    </select>
+
+    <select id="getTicketByUser" parameterType="java.lang.String" resultType="com.entity.TicketEntity">
+        select * from ticket where ticketbelong = #{ticketbelong}
+    </select>
+
+    <select id="getTicketByInTime" parameterType="java.util.Date" resultType="com.entity.TicketEntity">
+        select * from ticket where intime between #{startTime} and #{endTime}
+    </select>
+
+    <select id="getTicketByOutTime" parameterType="java.util.Date" resultType="com.entity.TicketEntity">
+        select * from ticket where outtime between #{startTime} and #{endTime}
+    </select>
+
+    <select id="list" resultType="com.entity.TicketEntity">
+        select * from ticket order by id desc
+    </select>
+
+
+</mapper>
