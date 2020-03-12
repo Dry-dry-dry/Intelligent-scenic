@@ -5,10 +5,6 @@ import com.entity.ManagementEntity;
 import com.entity.TicketEntity;
 import com.mapper.TicketMapper;
 import com.service.TicketService;
-<<<<<<< HEAD
-//import org.junit.Test;
-=======
->>>>>>> c8fac659b9325a9b5d0770062a9a1705dfd2a0c9
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
