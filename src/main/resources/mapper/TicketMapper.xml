@@ -48,7 +48,7 @@
     <update id="update" parameterType="com.entity.TicketEntity">
         update ticket
         <trim prefix="set" suffixOverrides=",">
-            <if test="ticketprice != null">ticketprice = #{ticketprice},</if>
+            <if test="ticketprice != 0">ticketprice = #{ticketprice},</if>
             <if test="ticketsname != null">ticketsname = #{ticketsname},</if>
             <if test="ticketbooker != null">ticketbooker = #{ticketbooker},</if>
             <if test="applytime != null">applytime = #{applytime},</if>
@@ -62,7 +62,7 @@
             <if test="intime != null">intime = #{intime},</if>
             <if test="outtime != null">outtime = #{outtime},</if>
         </trim>
-        where ticketbelong = #{ticketbelong}
+        where id = #{id}
     </update>
 
     <select id="getTicketById" parameterType="java.lang.Integer" resultType="com.entity.TicketEntity">
@@ -83,6 +83,10 @@
 
     <select id="getTicketByOutTime" parameterType="java.util.Date" resultType="com.entity.TicketEntity">
         select * from ticket where outtime between #{startTime} and #{endTime}
+    </select>
+
+    <select id="getTicketByTicketTime" parameterType="java.util.Date" resultType="com.entity.TicketEntity">
+        select * from ticket where tickettime between #{startTime} and #{endTime}
     </select>
 
     <select id="list" resultType="com.entity.TicketEntity">

@@ -19,7 +19,7 @@
             <if test="ticketprice != null">#{ticketprice},</if>
             <if test="concessionprice != null">#{concessionprice},</if>
             <if test="ticketType != null">#{ticketType},</if>
-            <if test="issale != null">issale,</if>
+            <if test="issale != null">#{issale},</if>
         </trim>
     </insert>
 

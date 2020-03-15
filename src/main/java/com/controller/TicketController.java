@@ -42,6 +42,10 @@ public class TicketController {
     @ApiOperation("补票")
     @PostMapping("/afterbuy")
     public Response afterbuy(@RequestBody TicketEntity req){
+        Date applytime = new Date();
+        Date ticketTime = ticketService.timesTempToDate(req.getStrtickettime());
+        req.setApplytime(applytime);
+        req.setTickettime(ticketTime);
         ticketService.insert(req);
         return Response.ok();
     }
@@ -66,25 +70,17 @@ public class TicketController {
     @ApiOperation("景区入口：门票使用时间")
     @PostMapping("/ticketInTime")
     public Response setTicketInTime(@RequestBody TicketEntity req){
-        String strInTime = req.getStrintime();
-        long lt = new Long(strInTime);
-        Date outDate = new Date(lt);
-        TicketEntity ticketEntity = new TicketEntity();
-//        ticketEntity.setId(req.getId());
-        ticketEntity.setOuttime(outDate);
-        ticketService.update(ticketEntity);
+        Date intime = new Date();
+        req.setIntime(intime);
+        ticketService.update(req);
         return Response.ok();
     }
     @ApiOperation("景区出口：门票使用时间")
     @PostMapping("/ticketOutTime")
     public Response setTicketOutTime(@RequestBody TicketEntity req){
-        String strOutTime = req.getStrouttime();
-        long lt = new Long(strOutTime);
-        Date outDate = new Date(lt);
-        TicketEntity ticketEntity = new TicketEntity();
-//        ticketEntity.setId(Integer.parseInt(ID));
-        ticketEntity.setOuttime(outDate);
-        ticketService.update(ticketEntity);
+        Date outDate = new Date();
+        req.setOuttime(outDate);
+        ticketService.update(req);
         return Response.ok();
     }
 
@@ -104,7 +100,7 @@ public class TicketController {
     @ApiOperation("增加门票设置信息")
     @PostMapping("/addTicketSet")
     //查询用户信息包括用户组、角色信息
-    public Response addTicketSetEntitys(TicketSetEntity ticketSetEntity){
+    public Response addTicketSetEntitys(@RequestBody TicketSetEntity ticketSetEntity){
         ticketSetService.insert(ticketSetEntity);
         return Response.ok();
     }
@@ -121,7 +117,7 @@ public class TicketController {
     @ApiOperation("修改门票设置信息")
     @PostMapping("/updateSetTickets")
     //查询用户信息包括用户组、角色信息
-    public Response updateTicketSetEntitys(TicketSetEntity ticketSetEntity){
+    public Response updateTicketSetEntitys(@RequestBody TicketSetEntity ticketSetEntity){
         ticketSetService.update(ticketSetEntity);
         return Response.ok();
     }

@@ -27,6 +27,8 @@ public interface TicketMapper {
 
     List<TicketEntity> getTicketByOutTime(@Param("startTime") Date startTime, @Param("endTime") Date endTime);
 
+    List<TicketEntity> getTicketByTicketTime(@Param("startTime") Date startTime, @Param("endTime") Date endTime);
+
     List<TicketEntity> list();
 
 

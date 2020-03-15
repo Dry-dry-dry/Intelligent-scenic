@@ -5,10 +5,6 @@ import com.entity.ManagementEntity;
 import com.entity.TicketEntity;
 import com.mapper.TicketMapper;
 import com.service.TicketService;
-<<<<<<< HEAD
-//import org.junit.Test;
-=======
->>>>>>> c8fac659b9325a9b5d0770062a9a1705dfd2a0c9
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +19,10 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public void insert(TicketEntity entity) {
+        Date applytime = new Date();
+        Date ticketTime = timesTempToDate(entity.getStrtickettime());
+        entity.setApplytime(applytime);
+        entity.setTickettime(ticketTime);
         ticketMapper.insert(entity);
     }
 
@@ -55,13 +55,15 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<TicketEntity> getTicketByUser(String ticketbelong) {
-        List<TicketEntity> list = ticketMapper.getTicketByUser(ticketbelong);
+    public List<TicketEntity> getTicketByUser(String ticketbooker) {
+//        List<TicketEntity> list = ticketMapper.getTicketByUser(ticketbelong);
+        List<TicketEntity> list = ticketMapper.getTicketByBooker(ticketbooker);
         if (list.size() == 0) {
             return null;
         }
         return list;
     }
+
 
     @Override
     public int getTicketByInTime(String strInTime, String strOutTime) {
@@ -145,23 +147,24 @@ public class TicketServiceImpl implements TicketService {
 //        System.out.println(simpleDateFormat.format(intime));
 //        System.out.println(simpleDateFormat.format(outtime));
 
-        List<TicketEntity> ticketList = ticketMapper.getTicketByInTime(startTime, endTime);
+        List<TicketEntity> ticketList = ticketMapper.getTicketByTicketTime(startTime, endTime);
         int usedFee = 0;
         int unusedFee = 0;
+        int usedUserNum = 0;
         int unusedUserNum = 0;
         for (TicketEntity ticket : ticketList) {
             if (ticket.getIsused() == TicketEntity.TICKET_USED) {
                 //计算已经使用后的门票总费用
                 usedFee = usedFee + ticket.getTicketprice();
-            } else {
+                usedUserNum++;
+            } else if(ticket.getIsrefund() == TicketEntity.TICKET_UNREFUND){
                 unusedFee = unusedFee + ticket.getTicketprice();
                 unusedUserNum++;
             }
         }
-        int usedUserNum = ticketList.size() - unusedUserNum;
 
         Map<String, Integer> dataMap = new HashMap<>();
-        dataMap.put("ticketSellTotalNum", list().size());
+        dataMap.put("ticketSellTotalNum", usedUserNum+unusedUserNum);
         dataMap.put("ticketSellTotalPrice", usedFee + unusedFee);
         dataMap.put("ticketSellUsedNum", usedUserNum);
         dataMap.put("ticketSellUsedPrice", usedFee);
@@ -184,10 +187,12 @@ public class TicketServiceImpl implements TicketService {
         if (strYear.equals("") || strYear == null) {
             strYear = String.valueOf(dateNow.getYear());
             year = Integer.parseInt(strYear);
+        }else {
+            year = Integer.parseInt(strYear);
         }
 
         ManagementEntity managementEntity = new ManagementEntity();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, Integer.parseInt(strMonth), 1); //设置日期为当月第一天
@@ -207,13 +212,14 @@ public class TicketServiceImpl implements TicketService {
         List unusedPriceList = new ArrayList();
 
         for (int day = 1; day <= lastDay; day++) {
-            String strStartDate = year + "-" + Integer.parseInt(strMonth) + "-" + day;
+            String strStartDate = year + "-" + Integer.parseInt(strMonth) + "-" + day + " 00:00:00";
             String strEndDate = null;
-            if(day == lastDay){
-                strEndDate = year + "-" + (Integer.parseInt(strMonth)+1) + "-" + 1;
-            }else {
-                strEndDate = year + "-" + Integer.parseInt(strMonth) + "-" + (day+1);
-            }
+//            if(day == lastDay){
+//                strEndDate = year + "-" + (Integer.parseInt(strMonth)+1) + "-" + 1;
+//            }else {
+//                strEndDate = year + "-" + Integer.parseInt(strMonth) + "-" + (day+1);
+//            }
+            strEndDate = year + "-" + Integer.parseInt(strMonth) + "-" + day + " 23:59:59";
             try {
                 Date startDate = simpleDateFormat.parse(strStartDate);
                 Date endDate = simpleDateFormat.parse(strEndDate);

@@ -8,7 +8,8 @@ import java.util.Date;
 public class TicketEntity {
     public final static int TICKET_USED = 1;
     public final static int TICKET_UNUSED = 0;
-
+    public final static int TICKET_REFUND = 1;
+    public final static int TICKET_UNREFUND = 0;
 
     private int id;
     private String ticketsname; //门票名
